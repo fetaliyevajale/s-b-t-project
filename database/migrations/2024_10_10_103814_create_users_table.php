@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name'); // İstifadəçi adı
+            $table->string('email')->unique(); // E-poçt, unikal olmalıdır
+            $table->string('password'); // Parol
+            $table->timestamps(); // Yarandığı və güncəlləndiyi tarixlər
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('users'); // İstifadəçi cədvəlini sil
     }
 };

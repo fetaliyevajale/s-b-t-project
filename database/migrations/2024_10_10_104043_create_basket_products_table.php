@@ -9,13 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('basket_products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('basket_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->integer('quantity')->default(1); // Məhsulun miqdarı
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
